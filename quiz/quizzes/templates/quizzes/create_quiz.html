@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Create a quiz</h2>
+    <form method="post" enctype="multipart/form-data"> <!--both forms are under the same <form> tag -->
+        {{ form.as_p }}
+        {% csrf_token %}
+        <button type="submit" >Post</button> <!--clicking the button will send POST data from both forms at the same time -->
+    </form>
+{% endblock content %}
+
+

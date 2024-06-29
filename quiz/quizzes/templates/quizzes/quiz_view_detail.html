@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>{{ quiz.title }}</h2>
+    <p>{{ quiz.category }}</p>
+    <p>{{ quiz.description }}</p>
+    <p>{{ quiz.is_active }}</p>
+
+    {% if perms.quizzes.change_quiz %}
+        <a href="{% url 'update-delete-quiz' quiz.id %}">[Edit | Delete a quiz]</a>
+    {% endif %}
+    {% if perms.quizzes.deactivate_quiz %}
+        <a href="{% url 'deactivate-quiz' quiz.id %}">[Deactivate a quiz]</a>
+    {% endif %}
+
+{% endblock content %}
+

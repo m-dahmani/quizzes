@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <title>{% block title %}Quiz{% endblock title %}</title>
+        <link href="{% static 'app.css' %}" rel="stylesheet"/>
+    </head>
+    <body>
+    <div class="sidebar">
+        <h1>Quiz</h1>
+
+        {% if user.is_authenticated %}  <!--check user is connected-->
+            <p>Hey {{ user }}!</p>
+
+            <img class="avatar" src="{% static 'images/default_profile.png' %}">
+
+            <p><a href="{% url 'home' %}">Home</a></p>
+
+            {% if perms.quizzes.add_quiz %}
+                <p><a href="{% url 'quiz-create' %}">Create a quiz</a></p>
+                <p><a href="{% url 'quiz-create-multiple' %}">Create multiple quiz</a></p>
+            {% endif %}
+
+            <p><a href="{% url 'password_change' %}">Change password</a></p>
+            <p><a href="{% url 'logout' %}">Sign out</a></p>
+        {% endif %}
+    </div>
+
+    <div class="main">
+        {% block content %}{% endblock %}
+    </div>
+    </body>
+</html>

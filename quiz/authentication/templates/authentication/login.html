@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<!--    <p>{{ message }}</p>--> <!--replace by redirect('home') -->
+    <h2>Log in</h2>
+    <form method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <button type="submit" >Sign in</button>
+    </form>
+    <p>Not a member yet ? <a href="{% url 'signup' %}">Sign up now !</a></p>
+{% endblock content %}
+

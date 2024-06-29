@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<!--    <h1>Hello, {{ user.username }} !</h1>-->
+    <h2>Quizzes</h2>
+    <div class="grid-container">
+        {% for quiz in quizzes %}
+            <div class="post">
+                <a href="{% url 'quiz-view-detail' quiz.id %}">
+                    <p>{{ quiz.title }}</p>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

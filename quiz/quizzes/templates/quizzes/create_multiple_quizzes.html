@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Créer plusieurs quiz</h2>
+    <form method="post" enctype="multipart/form-data"> <!--so that the form can manage the sending of files -->
+<!--        {{ formset.as_p }}-->
+<!--        {% csrf_token %}-->
+
+        {% csrf_token %}
+        {{ formset.management_form }}
+        {% for form in formset %}
+            <div>
+                {{ form.as_p }}
+            </div>
+        {% endfor %}
+
+        <button type="submit" >Enregistrer les Quiz</button>
+    </form>
+{% endblock content %}
+
+
