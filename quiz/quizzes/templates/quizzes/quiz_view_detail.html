@@ -2,7 +2,14 @@
 {% block content %}
     <h2>{{ quiz.title }}</h2>
     <p>{{ quiz.category }}</p>
-    <p>{{ quiz.description }}</p>
+<!--    <p>{{ quiz.description }}</p>-->
+
+    <div class="blog-content">
+        {% for paragraph in description_paragraphs %}
+            <p>{{ paragraph }}</p>
+        {% endfor %}
+    </div>
+
     <p>{{ quiz.is_active }}</p>
 
     {% if perms.quizzes.change_quiz %}

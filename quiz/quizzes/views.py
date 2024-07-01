@@ -182,7 +182,12 @@ def deactivate_quiz(request, quiz_id):
 def quiz_view_detail(request, quiz_id):
     # to recover the quiz(obj) and handle the case where the object does not exist.
     quiz = get_object_or_404(Quiz, id=quiz_id)
-    context = {'quiz': quiz}
+
+    # Divide content into sentences in view
+    description_paragraphs = [sentence.strip() for sentence in quiz.description.split('.') if sentence]
+
+    context = {'quiz': quiz, 'description_paragraphs': description_paragraphs}
+
     return render(request, 'quizzes/quiz_view_detail.html', context)
 
 

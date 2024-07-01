@@ -38,22 +38,22 @@ class Quiz(models.Model):
         # Add & call easily the send_email_to_author() method to send an email to the author
         self.send_email_to_author()
 
-        # Ajouter l'utilisateur au groupe "moderators" et lui attribuer la permission "deactivate_quiz"
-        try:
-            deactivate_quiz = Permission.objects.get(codename='deactivate_quiz')
-            moderators, created = Group.objects.get_or_create(name='moderators')
-
-            # Assigner la permission au groupe s'il ne l'a pas déjà
-            if not moderators.permissions.filter(id=deactivate_quiz.id).exists():
-                moderators.permissions.add(deactivate_quiz)
-
-            # Ajouter l'utilisateur au groupe s'il ne fait pas déjà partie
-            if not moderators.user_set.filter(id=self.id).exists():
-                moderators.user_set.add(self)
-        except Permission.DoesNotExist:
-            print("Permission 'deactivate_quiz' does not exist.")
-        except Group.DoesNotExist:
-            print("Group 'moderators' does not exist.")
+        # # Ajouter l'utilisateur au groupe "moderators" et lui attribuer la permission "deactivate_quiz"
+        # try:
+        #     deactivate_quiz = Permission.objects.get(codename='deactivate_quiz')
+        #     moderators, created = Group.objects.get_or_create(name='moderators')
+        #
+        #     # Assigner la permission au groupe s'il ne l'a pas déjà
+        #     if not moderators.permissions.filter(id=deactivate_quiz.id).exists():
+        #         moderators.permissions.add(deactivate_quiz)
+        #
+        #     # Ajouter l'utilisateur au groupe s'il ne fait pas déjà partie
+        #     if not moderators.user_set.filter(id=self.id).exists():
+        #         moderators.user_set.add(self)
+        # except Permission.DoesNotExist:
+        #     print("Permission 'deactivate_quiz' does not exist.")
+        # except Group.DoesNotExist:
+        #     print("Group 'moderators' does not exist.")
 
 
 class Course(models.Model):
